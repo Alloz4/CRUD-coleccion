@@ -9,6 +9,7 @@ package principal;
 import java.util.Scanner;
 import modelo.ModeloAbs;
 import modelo.ModeloArrayList;
+import modelo.ModeloHashMap;
 import modelo.Producto;
 
 //Completar los mÃ©todos
@@ -55,7 +56,7 @@ public class MiAlmacen
         System.out.println("5. Compra de productos ");
         System.out.println("6. Venta de productos ");
         System.out.println("7. Listado completo de productos ");
-        System.out.println("8. Listado de productos con stock inferior al mÃ­nimo");
+        System.out.println("8. Listado de productos con stock inferior al mínimo");
         System.out.println("9. Terminar ");
         System.out.print("Elige una opción (1-9): ");        
     }
@@ -118,7 +119,7 @@ public class MiAlmacen
     
     private static void consultar(){        
        System.out.println("<CONSULTA>");
-       System.out.print("Introduzca codigo:");
+       System.out.print("Introduzca codigo: ");
        int codigo = leerEntero();
        Producto p = almacen.buscarProducto(codigo);
        if ( p == null){
@@ -135,7 +136,7 @@ public class MiAlmacen
     
     private static void borrar(){       
       System.out.println("<ELIMINAR>");
-      System.out.print("Introduzca codigo:");
+      System.out.print("Introduzca codigo: ");
       int codigo = leerEntero();
       boolean borrar = almacen.borrarProducto(codigo);
       if ( borrar == true){
@@ -201,9 +202,14 @@ public class MiAlmacen
      	   System.out.println("Producto: "+ producto);
      	   System.out.print("Introduzca la cantidad que quiere vender: ");
      	   int cantidad = leerEntero();
-     	   producto.setStock(producto.getStock()-cantidad);
-     	   almacen.modificarProducto(producto);
-     	   System.out.println("Producto actualizado.");
+     	   if (cantidad > producto.getStock()) {
+			System.out.println("No se puede vender el producto "+producto.getNombre()+" porque no hay stock suficiente.");
+     	   } else {
+     		  producto.setStock(producto.getStock()-cantidad);
+     		  almacen.modificarProducto(producto);
+     		  System.out.println("Producto actualizado.");
+     	   }
+     	   
         }
     }
     

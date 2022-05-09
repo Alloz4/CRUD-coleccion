@@ -24,6 +24,7 @@ public class Producto {
 	public Producto(int codigo, String nombre) {
 		this.codigo = codigo;
 		this.nombre = nombre;
+		
 	}
 
 	public String getNombre() {

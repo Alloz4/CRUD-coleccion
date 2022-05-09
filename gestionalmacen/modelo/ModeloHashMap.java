@@ -17,40 +17,38 @@ public class ModeloHashMap implements ModeloAbs
        lista=new HashMap  <Integer,Producto>();
     }
 
-	@Override
 	public boolean insertarProducto(Producto p) {
-		// TODO Auto-generated method stub
-		return false;
+		if (p != null) {
+			lista.put(p.getCodigo(), p);
+		}
+		return true;
 	}
 
-	@Override
 	public boolean borrarProducto(int codigo) {
-		// TODO Auto-generated method stub
-		return false;
+		return (lista.remove(codigo) != null);
 	}
 
-	@Override
-	public Producto buscarProducto(int codigo) {
-		// TODO Auto-generated method stub
-		return null;
+	public Producto buscarProducto(int codigo) {	
+		return lista.get(codigo);
 	}
 
-	@Override
 	public void listarProductosTodos() {
-		// TODO Auto-generated method stub
+		for (Map.Entry<Integer, Producto> valor : lista.entrySet()) {
+			System.out.println(valor.getValue());
+		}
 		
 	}
-
-	@Override
+	
 	public void listarProductosStockMin() {
-		// TODO Auto-generated method stub
-		
+		for (Map.Entry<Integer, Producto> valor : lista.entrySet()) {
+			if (valor.getValue().getStock() <= valor.getValue().getStock_min()) {
+				System.out.println(valor.getValue());	
+			}
+		}
 	}
 
-	@Override
 	public boolean modificarProducto(Producto nuevo) {
-		// TODO Auto-generated method stub
-		return false;
+		return (lista.containsValue(nuevo));
 	}
 
     
