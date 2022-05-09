@@ -21,7 +21,7 @@ public class MiAlmacen
     static private Scanner sc;
     
     public static void main(String[] args){
-        almacen=new ModeloArrayList ();
+        almacen = new ModeloArrayList ();
         sc = new Scanner(System.in);
         int opcion=0;
         do{
@@ -90,7 +90,7 @@ public class MiAlmacen
               error = true;
             }
         }
-       while ( error);
+       while (error);
        return valor; 
     }
 
@@ -148,10 +148,25 @@ public class MiAlmacen
    }
     
     // Cambia el precio de un producto a partir de su codigo
-    private static void modificarPrecio (){
+    private static void modificarPrecio () {
        System.out.println("<MODIFICAR PRECIO>");
-       System.out.println("Aún no disponible");
-       // IMPLEMENTAR
+       System.out.print("Introduzca un código: ");
+       int codigo = leerEntero();
+       Producto producto = almacen.buscarProducto(codigo);
+       if (producto == null) {
+    	   System.out.println("El producto con el código indicado no se encuentra en el almacen.");
+       	} else {
+ 		   System.out.println("Producto: "+producto);
+ 		   System.out.print("Introduzca el precio nuevo: ");
+ 		   float precio = leerFloat();
+ 		   if (precio > 0) {
+ 			producto.setPrecio(precio);
+ 			almacen.modificarProducto(producto);
+ 			System.out.println("Producto actualizado");
+ 		   	} else {
+ 				System.out.println("El precio no puede ser menor a 0");	
+ 			}
+		}
     }
     
     
@@ -159,16 +174,37 @@ public class MiAlmacen
     // Incrementa el stock
     private static void comprar(){     
        System.out.println("<COMPRAR>");
-       System.out.println("AÃºn no disponible");
-       // IMPLEMENTAR 
+       System.out.print("Introducza un código: ");
+       int codigo = leerEntero();
+       Producto producto = almacen.buscarProducto(codigo);
+       if (producto == null) {
+    	   System.out.println("El producto con el código indicado no se encuentra en el almacen.");	   
+       } else {
+    	   System.out.println("Producto: "+ producto);
+    	   System.out.print("Introduzca la cantidad que quiere comprar: ");
+    	   int cantidad = leerEntero();
+    	   producto.setStock(producto.getStock()+cantidad);
+    	   almacen.modificarProducto(producto);
+    	   System.out.println("Producto actualizado.");
+       }
     }
     
     // Decrementa el stock
     private static void vender(){
-        System.out.println("<VENDER>");
-        System.out.println("Aún no disponible");
-        // IMPLEMENTAR
-       
+    	System.out.println("<VENDER>");
+        System.out.print("Introducza un código: ");
+        int codigo = leerEntero();
+        Producto producto = almacen.buscarProducto(codigo);
+        if (producto == null) {
+     	   System.out.println("El producto con el código indicado no se encuentra en el almacen.");	   
+        } else {
+     	   System.out.println("Producto: "+ producto);
+     	   System.out.print("Introduzca la cantidad que quiere vender: ");
+     	   int cantidad = leerEntero();
+     	   producto.setStock(producto.getStock()-cantidad);
+     	   almacen.modificarProducto(producto);
+     	   System.out.println("Producto actualizado.");
+        }
     }
     
     // Listado de todos los productos
@@ -180,7 +216,7 @@ public class MiAlmacen
     // Listado de todos los productos con stock inferior a stock minimo
     private static void listarPocoStock(){
         System.out.println("<LISTAR STOCK BAJO MINIMOS>");
-        System.out.println("Aún no disponible");
+        almacen.listarProductosStockMin();
         }
     
     // Solicita datos al usuario para dar de alta un nuevo producto 
@@ -197,11 +233,14 @@ public class MiAlmacen
        String nombre = sc.nextLine();
        producto = new Producto(codigo, nombre);
        System.out.print("Stock: ");
-       int stock = leerEntero(); producto.setStock(stock);
+       int stock = leerEntero(); 
+       producto.setStock(stock);
        System.out.print("Stock Mínimo: ");
-       int stock_min = leerEntero(); producto.setStock_min(stock_min);
+       int stock_min = leerEntero(); 
+       producto.setStock_min(stock_min);
        System.out.print("Precio: ");
-       float precio = leerFloat(); producto.setPrecio(precio);
+       float precio = leerFloat(); 
+       producto.setPrecio(precio);
        almacen.insertarProducto(producto);
     }
        

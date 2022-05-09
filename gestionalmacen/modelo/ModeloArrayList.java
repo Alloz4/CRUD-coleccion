@@ -1,7 +1,6 @@
 /** Implementa la parte de Modelo de Datos
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Marcos Alloza 
  */
 package modelo;
 
@@ -44,11 +43,16 @@ public class ModeloArrayList implements ModeloAbs {
 	}
 
 	public void listarProductosStockMin() {
-
+		for (Producto producto : lista) {
+			if (producto.getStock() <= producto.getStock_min()) {
+				System.out.println(producto);
+			}
+		}
 	}
 
 	public boolean modificarProducto(Producto nuevo) {
-		return false;
+		int p = lista.indexOf(nuevo);
+		return (p != -1);
 	}
 
 }

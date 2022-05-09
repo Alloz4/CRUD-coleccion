@@ -2,8 +2,7 @@
 /**
  * Write a description of class ModeloHaspMap here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Marcos Alloza 
  */
 package modelo;
 import java.util.HashMap;
