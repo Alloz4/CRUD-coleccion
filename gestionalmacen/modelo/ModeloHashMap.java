@@ -51,6 +51,18 @@ public class ModeloHashMap implements ModeloAbs
 		return (lista.containsValue(nuevo));
 	}
 
+	@Override
+	public boolean cargarProductos() {
+		
+		return false;
+	}
+
+	@Override
+	public boolean salvarProducto() {
+
+		return false;
+	}
+
     
     
 }

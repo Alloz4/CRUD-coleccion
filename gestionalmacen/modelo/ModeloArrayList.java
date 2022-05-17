@@ -55,4 +55,16 @@ public class ModeloArrayList implements ModeloAbs {
 		return (p != -1);
 	}
 
+	@Override
+	public boolean cargarProductos() {
+
+		return false;
+	}
+
+	@Override
+	public boolean salvarProducto() {
+
+		return false;
+	}
+
 }
