@@ -6,6 +6,12 @@ package modelo;
  * @author: Marcos Alloza
  */
 public interface ModeloAbs {
+	
+	static final String fichero = "productos_objetos";
+
+	boolean cargarProductos();
+
+	boolean salvarProducto();
 
 	public boolean insertarProducto(Producto p);
 
