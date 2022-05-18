@@ -4,6 +4,11 @@
  */
 package modelo;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class ModeloArrayList implements ModeloAbs {
@@ -11,16 +16,19 @@ public class ModeloArrayList implements ModeloAbs {
 
 	public ModeloArrayList() {
 		lista = new ArrayList<Producto>();
+		cargarProductos();
 	}
 
 	// Implementar los metodos abstractos de ModeloAbs
 	public boolean insertarProducto(Producto p) {
+		salvarProducto();
 		return lista.add(p);
 	}
 
 	public boolean borrarProducto(int codigo) {
 		Producto producto = buscarProducto(codigo);
 		if (producto != null) {
+			salvarProducto();
 			return lista.remove(producto);
 		} else {
 			return false;
@@ -52,19 +60,56 @@ public class ModeloArrayList implements ModeloAbs {
 
 	public boolean modificarProducto(Producto nuevo) {
 		int p = lista.indexOf(nuevo);
+		salvarProducto();
 		return (p != -1);
 	}
 
-	@Override
 	public boolean cargarProductos() {
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+		try {
+			fis = new FileInputStream(fichero);
+			ois = new ObjectInputStream(fis);
 
-		return false;
+			while (true) {
+				Producto p = (Producto) ois.readObject();
+				lista.add(p);
+			}
+			
+		} catch (ClassNotFoundException e){
+		
+		} catch (IOException e) {
+			return false;
+		}
+
+		try {
+			fis.close();
+		} catch (IOException e) {
+			return false;
+		}
+
+		return true;
 	}
 
 	@Override
 	public boolean salvarProducto() {
 
-		return false;
+		try {
+
+			FileOutputStream fos = new FileOutputStream(fichero);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+			for (Producto producto : lista) {
+				oos.writeObject(producto);
+			}
+
+			oos.close();
+
+		} catch (IOException e) {
+			return false;
+		}
+
+		return true;
 	}
 
 }

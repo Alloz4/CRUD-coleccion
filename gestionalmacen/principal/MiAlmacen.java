@@ -22,7 +22,7 @@ public class MiAlmacen
     static private Scanner sc;
     
     public static void main(String[] args){
-        almacen = new ModeloArrayList ();
+        almacen = new ModeloHashMap ();
         sc = new Scanner(System.in);
         int opcion=0;
         do{
@@ -56,9 +56,9 @@ public class MiAlmacen
         System.out.println("5. Compra de productos ");
         System.out.println("6. Venta de productos ");
         System.out.println("7. Listado completo de productos ");
-        System.out.println("8. Listado de productos con stock inferior al m铆nimo");
+        System.out.println("8. Listado de productos con stock inferior al m韓imo");
         System.out.println("9. Terminar ");
-        System.out.print("Elige una opci贸n (1-9): ");        
+        System.out.print("Elige una opci髇 (1-9): ");        
     }
     
     // Lee un entero del System.in que este comprendido entre primero y ultimo
@@ -151,11 +151,11 @@ public class MiAlmacen
     // Cambia el precio de un producto a partir de su codigo
     private static void modificarPrecio () {
        System.out.println("<MODIFICAR PRECIO>");
-       System.out.print("Introduzca un c贸digo: ");
+       System.out.print("Introduzca un c骴igo: ");
        int codigo = leerEntero();
        Producto producto = almacen.buscarProducto(codigo);
        if (producto == null) {
-    	   System.out.println("El producto con el c贸digo indicado no se encuentra en el almacen.");
+    	   System.out.println("El producto con el c骴igo indicado no se encuentra en el almacen.");
        	} else {
  		   System.out.println("Producto: "+producto);
  		   System.out.print("Introduzca el precio nuevo: ");
@@ -175,11 +175,11 @@ public class MiAlmacen
     // Incrementa el stock
     private static void comprar(){     
        System.out.println("<COMPRAR>");
-       System.out.print("Introducza un c贸digo: ");
+       System.out.print("Introducza un c骴igo: ");
        int codigo = leerEntero();
        Producto producto = almacen.buscarProducto(codigo);
        if (producto == null) {
-    	   System.out.println("El producto con el c贸digo indicado no se encuentra en el almacen.");	   
+    	   System.out.println("El producto con el c骴igo indicado no se encuentra en el almacen.");	   
        } else {
     	   System.out.println("Producto: "+ producto);
     	   System.out.print("Introduzca la cantidad que quiere comprar: ");
@@ -193,11 +193,11 @@ public class MiAlmacen
     // Decrementa el stock
     private static void vender(){
     	System.out.println("<VENDER>");
-        System.out.print("Introducza un c贸digo: ");
+        System.out.print("Introducza un c骴igo: ");
         int codigo = leerEntero();
         Producto producto = almacen.buscarProducto(codigo);
         if (producto == null) {
-     	   System.out.println("El producto con el c贸digo indicado no se encuentra en el almacen.");	   
+     	   System.out.println("El producto con el c骴igo indicado no se encuentra en el almacen.");	   
         } else {
      	   System.out.println("Producto: "+ producto);
      	   System.out.print("Introduzca la cantidad que quiere vender: ");
@@ -229,11 +229,12 @@ public class MiAlmacen
     // El codigo no se puede repetir
     private static void crear(){
        System.out.println("<NUEVO PRODUCTO>");
-       System.out.print("Introduzca un c贸digo: ");
+       System.out.print("Introduzca un c骴igo: ");
        int codigo = leerEntero();
        Producto producto = almacen.buscarProducto(codigo);
        if (producto != null) {
-		System.out.println("Ya existe el c贸digo en el almacen "+producto);
+		System.out.println("Ya existe el c骴igo en el almacen "+producto);
+		return;
        }
        System.out.print("Nombre: ");
        String nombre = sc.nextLine();
@@ -241,7 +242,7 @@ public class MiAlmacen
        System.out.print("Stock: ");
        int stock = leerEntero(); 
        producto.setStock(stock);
-       System.out.print("Stock M铆nimo: ");
+       System.out.print("Stock M韓imo: ");
        int stock_min = leerEntero(); 
        producto.setStock_min(stock_min);
        System.out.print("Precio: ");

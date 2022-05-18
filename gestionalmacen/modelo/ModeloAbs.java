@@ -6,8 +6,8 @@ package modelo;
  * @author: Marcos Alloza
  */
 public interface ModeloAbs {
-	
-	static final String fichero = "productos_objetos";
+
+	static final String fichero = "productos.objetos";
 
 	boolean cargarProductos();
 

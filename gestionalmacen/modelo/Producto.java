@@ -6,8 +6,10 @@
  */
 package modelo;
 
-public class Producto {
-	// instance variables - replace the example below with your own
+import java.io.Serializable;
+
+public class Producto implements Serializable{
+	
 	int codigo; // Código del producto, se utiliza para buscar
 	String nombre; // Nombre un texto
 	int stock; // existencia actuales
