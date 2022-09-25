@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.Collection;
+
 /**
  * Abstract class ModeloAbs - Clase de acceso a Modelo de DATOS
  * 
@@ -20,6 +22,8 @@ public interface ModeloAbs {
 	public Producto buscarProducto(int codigo);
 
 	void listarProductosTodos();
+	
+	Collection<Producto> getProductos();
 
 	void listarProductosStockMin();
 

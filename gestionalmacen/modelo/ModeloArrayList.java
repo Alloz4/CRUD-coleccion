@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ModeloArrayList implements ModeloAbs {
 	private ArrayList<Producto> lista;
@@ -21,15 +22,17 @@ public class ModeloArrayList implements ModeloAbs {
 
 	// Implementar los metodos abstractos de ModeloAbs
 	public boolean insertarProducto(Producto p) {
+		lista.add(p);
 		salvarProducto();
-		return lista.add(p);
+		return true;
 	}
 
 	public boolean borrarProducto(int codigo) {
 		Producto producto = buscarProducto(codigo);
 		if (producto != null) {
+			lista.remove(producto);
 			salvarProducto();
-			return lista.remove(producto);
+			return true;
 		} else {
 			return false;
 		}
@@ -50,6 +53,10 @@ public class ModeloArrayList implements ModeloAbs {
 		}
 	}
 
+    public List<Producto> getProductos(){
+    	return lista;
+    }
+    
 	public void listarProductosStockMin() {
 		for (Producto producto : lista) {
 			if (producto.getStock() <= producto.getStock_min()) {

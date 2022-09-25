@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,15 +26,20 @@ public class ModeloHashMap implements ModeloAbs {
 
 	public boolean insertarProducto(Producto p) {
 		if (p != null) {
-			salvarProducto();
 			mapa.put(p.getCodigo(), p);
+			salvarProducto();
 		}
 		return true;
 	}
 
 	public boolean borrarProducto(int codigo) {
-		salvarProducto();
-		return (mapa.remove(codigo) != null);
+		if (mapa.get(codigo) != null) {
+			mapa.remove(codigo);
+			salvarProducto();
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public Producto buscarProducto(int codigo) {
@@ -108,5 +114,11 @@ public class ModeloHashMap implements ModeloAbs {
 		}
 
 		return true;
+	}
+
+	@Override
+	public Collection<Producto> getProductos() {
+		// TODO Auto-generated method stub
+		return mapa.values();
 	}
 }

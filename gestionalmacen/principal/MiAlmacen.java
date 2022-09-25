@@ -6,6 +6,9 @@
  */
 package principal;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Collection;
 import java.util.Scanner;
 import modelo.ModeloAbs;
 import modelo.ModeloArrayList;
@@ -27,7 +30,7 @@ public class MiAlmacen
         int opcion=0;
         do{
 		mostrarMenu();
-                opcion=leerOpcion(1,9);
+                opcion=leerOpcion(1,10);
                 switch(opcion){
                     case 1: crear();break;
                     case 2: consultar();break;
@@ -37,11 +40,14 @@ public class MiAlmacen
                     case 6: vender();break;
                     case 7: listar();break;
                     case 8: listarPocoStock();break;
+                    case 9: generarCSV();break;
                 }
                 System.out.println("\n---------------------------- ");
-                System.out.print("Pulse enter para continuar");
-                sc.nextLine();
-        }while(opcion!=9);
+                if(opcion != 10) {
+                    System.out.print("Pulse enter para continuar");
+                    sc.nextLine();
+                }
+        }while(opcion!=10);
         sc.close();
         
     }
@@ -57,8 +63,9 @@ public class MiAlmacen
         System.out.println("6. Venta de productos ");
         System.out.println("7. Listado completo de productos ");
         System.out.println("8. Listado de productos con stock inferior al mínimo");
-        System.out.println("9. Terminar ");
-        System.out.print("Elige una opción (1-9): ");        
+        System.out.println("9. Generar CSV Hoja de cálculo");
+        System.out.println("10. Terminar ");
+        System.out.print("Elige una opción (1-10): ");        
     }
     
     // Lee un entero del System.in que este comprendido entre primero y ultimo
@@ -69,7 +76,21 @@ public class MiAlmacen
         }
         return valor;
     }
-      
+      private static void generarCSV() {
+    	  try {
+			PrintWriter pw = new PrintWriter("salida.csv");
+			Collection<Producto> cproductos = almacen.getProductos();
+			
+			for (Producto producto : cproductos) {
+				pw.println(producto.getCodigo()+","+producto.getNombre()+","+producto.getPrecio());
+			}
+			pw.close();
+		} catch (FileNotFoundException e) {
+			
+			e.printStackTrace();
+		}
+      }
+    
     
     // Metodos Auxiliares leerFloat y LeerEntero, 
     // Lee de la System.in con el scanner sc y controlan la excepcion de NumberFormatException
@@ -217,13 +238,13 @@ public class MiAlmacen
     private static void listar(){        
          System.out.println("<LISTAR>");
          almacen.listarProductosTodos();
-         }
+    }
     
     // Listado de todos los productos con stock inferior a stock minimo
     private static void listarPocoStock(){
         System.out.println("<LISTAR STOCK BAJO MINIMOS>");
         almacen.listarProductosStockMin();
-        }
+    }
     
     // Solicita datos al usuario para dar de alta un nuevo producto 
     // El codigo no se puede repetir
