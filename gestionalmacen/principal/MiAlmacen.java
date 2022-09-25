@@ -1,6 +1,6 @@
 /**
  *  MiAlmacen
- *  Programa principal de gesti贸n de un almac茅n de productos
+ *  Programa principal de gesti脙鲁n de un almac脙漏n de productos
  *  implementa un CRUD ( Creat, Read, Update, Delete) ofreciendo varios
  *  informes.
  */
@@ -15,7 +15,7 @@ import modelo.ModeloArrayList;
 import modelo.ModeloHashMap;
 import modelo.Producto;
 
-//Completar los m茅todos
+//Completar los m脙漏todos
 public class MiAlmacen
 {
     // Defino como estaticas para que puedan usarse 
@@ -54,7 +54,7 @@ public class MiAlmacen
     
     
     private static void mostrarMenu(){
-        System.out.println("\n\n    MENU");
+        System.out.println("\n\n    MENU:");
         System.out.println("1. Nuevo producto ");
         System.out.println("2. Consulta producto ");
         System.out.println("3. Borrar producto ");
@@ -62,10 +62,16 @@ public class MiAlmacen
         System.out.println("5. Compra de productos ");
         System.out.println("6. Venta de productos ");
         System.out.println("7. Listado completo de productos ");
+<<<<<<< HEAD
         System.out.println("8. Listado de productos con stock inferior al m韓imo");
         System.out.println("9. Generar CSV Hoja de c醠culo");
         System.out.println("10. Terminar ");
         System.out.print("Elige una opci髇 (1-10): ");        
+=======
+        System.out.println("8. Listado de productos con stock inferior al m铆nimo");
+        System.out.println("9. Terminar ");
+        System.out.print("Elige una opci贸n (1-9): ");        
+>>>>>>> a0c35f03360c2e6b246eb7ec3b4b2b03f80a9f68
     }
     
     // Lee un entero del System.in que este comprendido entre primero y ultimo
@@ -172,11 +178,11 @@ public class MiAlmacen
     // Cambia el precio de un producto a partir de su codigo
     private static void modificarPrecio () {
        System.out.println("<MODIFICAR PRECIO>");
-       System.out.print("Introduzca un c骴igo: ");
+       System.out.print("Introduzca un c贸digo: ");
        int codigo = leerEntero();
        Producto producto = almacen.buscarProducto(codigo);
        if (producto == null) {
-    	   System.out.println("El producto con el c骴igo indicado no se encuentra en el almacen.");
+    	   System.out.println("El producto con el c贸digo indicado no se encuentra en el almacen.");
        	} else {
  		   System.out.println("Producto: "+producto);
  		   System.out.print("Introduzca el precio nuevo: ");
@@ -196,11 +202,11 @@ public class MiAlmacen
     // Incrementa el stock
     private static void comprar(){     
        System.out.println("<COMPRAR>");
-       System.out.print("Introducza un c骴igo: ");
+       System.out.print("Introducza un c贸digo: ");
        int codigo = leerEntero();
        Producto producto = almacen.buscarProducto(codigo);
        if (producto == null) {
-    	   System.out.println("El producto con el c骴igo indicado no se encuentra en el almacen.");	   
+    	   System.out.println("El producto con el c贸digo indicado no se encuentra en el almacen.");	   
        } else {
     	   System.out.println("Producto: "+ producto);
     	   System.out.print("Introduzca la cantidad que quiere comprar: ");
@@ -214,11 +220,11 @@ public class MiAlmacen
     // Decrementa el stock
     private static void vender(){
     	System.out.println("<VENDER>");
-        System.out.print("Introducza un c骴igo: ");
+        System.out.print("Introducza un c贸digo: ");
         int codigo = leerEntero();
         Producto producto = almacen.buscarProducto(codigo);
         if (producto == null) {
-     	   System.out.println("El producto con el c骴igo indicado no se encuentra en el almacen.");	   
+     	   System.out.println("El producto con el c贸digo indicado no se encuentra en el almacen.");	   
         } else {
      	   System.out.println("Producto: "+ producto);
      	   System.out.print("Introduzca la cantidad que quiere vender: ");
@@ -250,11 +256,11 @@ public class MiAlmacen
     // El codigo no se puede repetir
     private static void crear(){
        System.out.println("<NUEVO PRODUCTO>");
-       System.out.print("Introduzca un c骴igo: ");
+       System.out.print("Introduzca un c贸digo: ");
        int codigo = leerEntero();
        Producto producto = almacen.buscarProducto(codigo);
        if (producto != null) {
-		System.out.println("Ya existe el c骴igo en el almacen "+producto);
+		System.out.println("Ya existe el c贸digo en el almacen "+producto);
 		return;
        }
        System.out.print("Nombre: ");
@@ -263,7 +269,7 @@ public class MiAlmacen
        System.out.print("Stock: ");
        int stock = leerEntero(); 
        producto.setStock(stock);
-       System.out.print("Stock M韓imo: ");
+       System.out.print("Stock M铆nimo: ");
        int stock_min = leerEntero(); 
        producto.setStock_min(stock_min);
        System.out.print("Precio: ");
